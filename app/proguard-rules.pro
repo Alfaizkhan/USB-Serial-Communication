@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Preserve usb-serial-for-android driver reflection
+-keep class com.hoho.android.usbserial.driver.** { *; }
+-keep interface com.hoho.android.usbserial.driver.** { *; }
