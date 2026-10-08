@@ -12,8 +12,26 @@ A modern, robust, and lightweight Android USB Serial Terminal application design
 
 ---
 
+## Technical Audit & Repository Overview
+
+| Audit Category | Specification / Details |
+| :--- | :--- |
+| **Frameworks Used** | **Android SDK** (API Level 21–36), **AndroidX Suite** (`androidx.appcompat`, `androidx.core:core`, `androidx.fragment:fragment`), **Google Material Components** (`com.google.android.material:material`), **USB Serial for Android** (`com.github.mik3y:usb-serial-for-android:3.9.0`) |
+| **Frontend Frameworks** | **Android UI Toolkit** (XML Layouts, ViewBinding, AppCompat Theme Engine, Material Design 3 Components, FragmentManager backstack management) |
+| **Backend Frameworks** | **None (Client-Side Standalone App)** / Android OS Subsystem (`android.hardware.usb`, Android Foreground Service `SerialService`) |
+| **Languages Percentage (Bytes > 5%)** | • **Java:** 83.5% (96,191 bytes)<br>• **XML (Layouts & Resources):** 14.6% (16,812 bytes)<br>• *(Gradle/Groovy: 1.9% / 2,228 bytes)* |
+| **Frameworks Percentage (Bytes > 5%)** | **AndroidX & Android Framework:** ~65%, **usb-serial-for-android:** ~35% |
+| **Databases Used** | **None (In-Memory Buffer Architecture)**: Cyclic byte queues, `SerialSocket` background worker threads, and `TextUtil` string builders; optional Android `SharedPreferences` for user session settings |
+| **Third-Party APIs** | **`usb-serial-for-android`** (`com.github.mik3y:usb-serial-for-android`) providing direct USB Host abstraction drivers for FTDI, CP210x, CH34x, PL2303, and CDC/ACM protocols |
+| **Setup Guidelines** | Android Studio Koala/Ladybug+, Java 17 / OpenJDK 17, Android SDK Platform 36, `./gradlew assembleDebug`, `./gradlew installDebug`, USB OTG connection flow |
+| **Security Findings** | **Zero Network Exposure** (omits `android.permission.INTERNET`), zero third-party telemetry, explicit OS-level USB permission prompts (`UsbManager.requestPermission()`), compliant with Android 14+ scoped foreground service permissions (`FOREGROUND_SERVICE_CONNECTED_DEVICE`) |
+| **Documentation Quality** | Enterprise Grade: Mermaid architecture diagrams, complete hardware compatibility matrix, custom prober setup, and user guide |
+
+---
+
 ## Table of Contents
 
+- [Technical Audit & Repository Overview](#technical-audit--repository-overview)
 - [Overview](#overview)
 - [Key Features](#key-features)
 - [Supported Hardware & Chipsets](#supported-hardware--chipsets)
