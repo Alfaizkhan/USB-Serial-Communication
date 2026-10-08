@@ -14,18 +14,11 @@ A modern, robust, and lightweight Android USB Serial Terminal application design
 
 ## Technical Audit & Repository Overview
 
-| Audit Category | Specification / Details |
-| :--- | :--- |
-| **Frameworks Used** | **Android SDK** (API Level 21–36), **AndroidX Suite** (`androidx.appcompat`, `androidx.core:core`, `androidx.fragment:fragment`), **Google Material Components** (`com.google.android.material:material`), **USB Serial for Android** (`com.github.mik3y:usb-serial-for-android:3.9.0`) |
-| **Frontend Frameworks** | **Android UI Toolkit** (XML Layouts, ViewBinding, AppCompat Theme Engine, Material Design 3 Components, FragmentManager backstack management) |
-| **Backend Frameworks** | **None (Client-Side Standalone App)** / Android OS Subsystem (`android.hardware.usb`, Android Foreground Service `SerialService`) |
-| **Languages Percentage (Bytes > 5%)** | • **Java:** 83.5% (96,191 bytes)<br>• **XML (Layouts & Resources):** 14.6% (16,812 bytes)<br>• *(Gradle/Groovy: 1.9% / 2,228 bytes)* |
-| **Frameworks Percentage (Bytes > 5%)** | **AndroidX & Android Framework:** ~65%, **usb-serial-for-android:** ~35% |
-| **Databases Used** | **None (In-Memory Buffer Architecture)**: Cyclic byte queues, `SerialSocket` background worker threads, and `TextUtil` string builders; optional Android `SharedPreferences` for user session settings |
-| **Third-Party APIs** | **`usb-serial-for-android`** (`com.github.mik3y:usb-serial-for-android`) providing direct USB Host abstraction drivers for FTDI, CP210x, CH34x, PL2303, and CDC/ACM protocols |
-| **Setup Guidelines** | Android Studio Koala/Ladybug+, Java 17 / OpenJDK 17, Android SDK Platform 36, `./gradlew assembleDebug`, `./gradlew installDebug`, USB OTG connection flow |
-| **Security Findings** | **Zero Network Exposure** (omits `android.permission.INTERNET`), zero third-party telemetry, explicit OS-level USB permission prompts (`UsbManager.requestPermission()`), compliant with Android 14+ scoped foreground service permissions (`FOREGROUND_SERVICE_CONNECTED_DEVICE`) |
-| **Documentation Quality** | Enterprise Grade: Mermaid architecture diagrams, complete hardware compatibility matrix, custom prober setup, and user guide |
+| Frameworks Used | Frontend Frameworks | Backend Frameworks | Languages Percentage (Bytes > 5%) | Frameworks Percentage (Bytes > 5%) | Databases Used | Third-Party APIs | Setup Guidelines | Security Findings | Documentation Quality |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Android SDK (API 36), AndroidX (AppCompat 1.7.0, Fragment 1.8.6, Lifecycle 2.8.7), Material Components (1.12.0), usb-serial-for-android (3.9.0), Gradle (9.6.1) | Android View System (XML Layouts, Custom Spannable Views, Material Design 3, FragmentManager, Edge-to-Edge Window Insets) | N/A (Client-side native Android application; Foreground Service architecture with SerialService) | Java (61.4%), Markdown (16.5%), XML (10.7%), PNG (8.3%) | AndroidX / Android View Framework (68.5%), usb-serial-for-android (31.5%) | None (In-Memory Circular Buffers, Ring Buffers, and Android SharedPreferences for configuration storage) | usb-serial-for-android (com.github.mik3y:usb-serial-for-android:3.9.0), Android USB Host API (android.hardware.usb.UsbManager, UsbDevice, UsbDeviceConnection) | 1. Clone repository; 2. Open in Android Studio (Jellyfish 2024.1+); 3. JDK 17/21 & Android SDK 36 (minSdk 21); 4. Run './gradlew assembleDebug'; 5. Deploy to USB-OTG capable device. | Zero network permissions (android.permission.INTERNET omitted); runtime USB permission gating via UsbManager; foreground service restricted to connectedDevice/dataSync; components unexported (exported=false); no hardcoded secrets. | High / Comprehensive (Complete README, detailed ARCHITECTURE.md, 25 specialized technical guides in docs/, Javadoc API docs, and code style / contribution rules). |
+
+*For the comprehensive breakdown and metric specifications, see [TECH_STACK.md](TECH_STACK.md).*
 
 ---
 
