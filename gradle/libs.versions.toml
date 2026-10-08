@@ -1,7 +1,7 @@
 [versions]
 appcompat = "1.7.1"
 gradle = "9.2.1"
-material = "1.13.0" # newer version would need minsdk 23
+material = "1.14.0" # newer version would need minsdk 23
 usb-serial-for-android = "3.11.0"  # maven jitpack
 #usb-serial-for-android = "3.8.0beta"  # maven local
 
