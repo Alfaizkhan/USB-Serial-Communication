@@ -1,0 +1,37 @@
+package com.alfaizkhan.usbserialcommunication;
+
+import java.util.Objects;
+
+/**
+ * Per-frame write deadline watchdog timer.
+ */
+public final class TransmissionDeadlineWatchdog {
+    private final String identifier;
+    private final long timestamp;
+
+    public TransmissionDeadlineWatchdog() {
+        this("TransmissionDeadlineWatchdog");
+    }
+
+    public TransmissionDeadlineWatchdog(String identifier) {
+        this.identifier = Objects.requireNonNull(identifier, "identifier cannot be null");
+        this.timestamp = System.currentTimeMillis();
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public boolean isValid() {
+        return identifier != null && !identifier.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return "TransmissionDeadlineWatchdog[" + identifier + "]";
+    }
+}
